@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class playMovie : MonoBehaviour
-{
+public class playMovie : MonoBehaviour {
     private MeshRenderer mesh;
     private Renderer render;
     private MovieTexture movie;
     private AudioSource audio;
 
-    void OnGUI()
-    {
+    void OnGUI() {
         Event e = Event.current;
 
         /* Code used to detect what key was pressed
@@ -18,49 +16,38 @@ public class playMovie : MonoBehaviour
 		}
 		*/
 
-        if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha1.ToString())))
-        {
+        if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha1.ToString()))) {
 
             mesh.enabled = !mesh.enabled;
-            if (mesh.enabled == true)
-            {
+            if (mesh.enabled == true) {
                 movie.Play();
                 audio.Play();
-            }
-            else
-            {
+            } else {
                 movie.Stop();
                 audio.Stop();
             }
 
-        }
-        else if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha2.ToString())))
-        {
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha2.ToString()))) {
 
-        }
-        else if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha3.ToString())))
-        {
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha3.ToString()))) {
 
         }
 
 
     }
 
-    public void startMovie()
-    {
+    public void startMovie() {
         movie.Play();
         audio.Play();
     }
 
-    public void stopMovie()
-    {
+    public void stopMovie() {
         movie.Stop();
         audio.Stop();
     }
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         mesh = GetComponent<MeshRenderer>();
         render = GetComponent<Renderer>();
         movie = (MovieTexture)render.material.mainTexture;
