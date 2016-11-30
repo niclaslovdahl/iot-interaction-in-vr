@@ -12,14 +12,12 @@ public class interactableTV : VRTK_InteractableObject {
 
     public override void StartUsing(GameObject usingObject) {
         base.StartUsing(usingObject);
-        movie.GetComponent<playMovie>().startMovie();
-        movie.GetComponent<MeshRenderer>().enabled = true;
+        movie.GetComponent<playMovie>().toggleTv();
     }
 
     public override void StopUsing(GameObject usingObject) {
         base.StopUsing(usingObject);
-        movie.GetComponent<playMovie>().stopMovie();
-        movie.GetComponent<MeshRenderer>().enabled = false;
+        movie.GetComponent<playMovie>().toggleTv();
     }
 
     protected override void Start() {
