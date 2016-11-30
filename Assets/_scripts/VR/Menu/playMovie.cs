@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * This class handles the state of the movie played on the TV. Call toggleTV() to change state.
+ */
+
 public class playMovie : MonoBehaviour {
     private MeshRenderer mesh;
     private Renderer render;

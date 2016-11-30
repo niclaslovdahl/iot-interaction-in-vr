@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using VRTK;
 
-/// <summary>
-/// 
-/// </summary>
+/*
+ * Implementing VRTK_InteractableObject making the TV interactable.
+ */
 
 public class interactableTV : VRTK_InteractableObject {
 
@@ -24,6 +24,4 @@ public class interactableTV : VRTK_InteractableObject {
         base.Start();
         movie = GameObject.FindGameObjectWithTag("movie");
     }
-
-
 }
