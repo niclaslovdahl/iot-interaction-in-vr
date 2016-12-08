@@ -29,7 +29,7 @@ public class discoverDevices : MonoBehaviour
     // Function tracks if gesture (hands up) is active och inactive.
     void Update()
     {
-        if ((trans.position.y > head.position.y) && (activated == false))
+        if ((trans.position.y > head.position.y + 0.15f) && (activated == false))
         {
             Debug.Log("Active discover state");
 
@@ -40,7 +40,7 @@ public class discoverDevices : MonoBehaviour
             activated = true;
 
         }
-        if ((trans.position.y <= head.position.y) && (activated == true))
+        if ((trans.position.y <= head.position.y + 0.15f) && (activated == true))
         {
             Debug.Log("Inactive discover state");
 
