@@ -39,6 +39,11 @@ public class interactableLamp : VRTK_InteractableObject
         base.Start();
     }
 
+    public bool getLampState()
+    {
+        return lampState;
+    }
+
     public void toogleLamp()
     {
         if (lampState)
