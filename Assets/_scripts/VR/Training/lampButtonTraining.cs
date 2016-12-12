@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lampButton : MonoBehaviour
+public class lampButtonTraining : MonoBehaviour
 {
 
-    public GameObject lamp;
+    public GameObject sphere;
     public Material buttonOn;
     public Material buttonOff;
     public Material buttonOnTrigger;
@@ -18,7 +18,7 @@ public class lampButton : MonoBehaviour
         Debug.Log(other.gameObject.name);
         if (other.tag == "leftTrigger" || other.tag == "rightTrigger")
         {
-            lamp.GetComponent<interactableLamp>().toogleLamp();
+            sphere.GetComponent<interactableSphere>().toogleSphere();
             click.Play();
             if (other.tag == "rightTrigger")
             {
@@ -39,7 +39,7 @@ public class lampButton : MonoBehaviour
 
     public void updateButton()
     {
-        if (lamp.GetComponent<interactableLamp>().getLampState())
+        if (sphere.GetComponent<interactableSphere>().getSphereState())
         {
             mesh.material = buttonOn;
         }

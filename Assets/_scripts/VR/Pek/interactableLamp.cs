@@ -17,6 +17,7 @@ public class interactableLamp : VRTK_InteractableObject
     public Material lampOff;
     public Material black;
     public GameObject smartwatch;
+    public GameObject button;
 
     private Thread thread;
     private int count = 0;
@@ -53,6 +54,7 @@ public class interactableLamp : VRTK_InteractableObject
             l3.enabled = false;
             StartCoroutine(turnOff());
             lampState = false;
+            button.GetComponent<lampButton>().updateButton();
         }
         else
         {
@@ -61,6 +63,7 @@ public class interactableLamp : VRTK_InteractableObject
             l3.enabled = true;
             StartCoroutine(turnOn());
             lampState = true;
+            button.GetComponent<lampButton>().updateButton();
         }
     }
 

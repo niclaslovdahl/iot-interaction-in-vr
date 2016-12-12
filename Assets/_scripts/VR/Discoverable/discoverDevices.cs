@@ -6,6 +6,7 @@ using System.Collections;
 /// This script should be dropped on the HTC Vive controllers.
 /// </summary>
 
+[RequireComponent(typeof(SteamVR_TrackedObject))]
 public class discoverDevices : MonoBehaviour
 {
 
@@ -16,6 +17,14 @@ public class discoverDevices : MonoBehaviour
 
     public Transform head;
 
+    SteamVR_TrackedObject trackedObj;
+    SteamVR_Controller.Device device;
+
+    void Awake()
+    {
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+
+    }
 
     // Init
     void Start()
@@ -29,6 +38,9 @@ public class discoverDevices : MonoBehaviour
     // Function tracks if gesture (hands up) is active och inactive.
     void Update()
     {
+
+        device = SteamVR_Controller.Input((int)trackedObj.index);
+
         if ((trans.position.y > head.position.y + 0.15f) && (activated == false))
         {
             Debug.Log("Active discover state");
@@ -50,5 +62,10 @@ public class discoverDevices : MonoBehaviour
             }
             activated = false;
         }
+    }
+
+    public void vibrate(ushort durationTime)
+    {
+        device.TriggerHapticPulse(durationTime);
     }
 }
