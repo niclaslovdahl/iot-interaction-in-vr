@@ -47,11 +47,11 @@ public class ControllerManagerLeft : MonoBehaviour {
     }
 
     void OnClickTrigger(object sender, ClickedEventArgs e) {
-        anim.SetTrigger(MiddleFinger);
+
     }
 
     void OnUnclickTrigger(object sender, ClickedEventArgs e) {
-        anim.SetTrigger(Idle);
+
     }
 
 }

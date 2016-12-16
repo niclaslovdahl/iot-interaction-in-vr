@@ -15,7 +15,6 @@ public class lampButton : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (other.tag == "leftTrigger" || other.tag == "rightTrigger")
         {
             lamp.GetComponent<interactableLamp>().toogleLamp();

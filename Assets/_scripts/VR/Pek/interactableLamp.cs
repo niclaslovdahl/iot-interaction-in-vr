@@ -14,7 +14,7 @@ public class interactableLamp : VRTK_InteractableObject {
     public Light l3;
     public Material lampOn;
     public Material lampOff;
-    public Material black;
+    public Material init;
     public GameObject smartwatch;
     public GameObject button;
 
@@ -62,17 +62,17 @@ public class interactableLamp : VRTK_InteractableObject {
 
     private IEnumerator turnOff(int index) {
         smartwatch.GetComponent<Renderer>().material = lampOff;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         if (index == feedbackHandler.Instance.index) {
-            smartwatch.GetComponent<Renderer>().material = black;
+            smartwatch.GetComponent<Renderer>().material = init;
         }
     }
 
     private IEnumerator turnOn(int index) {
         smartwatch.GetComponent<Renderer>().material = lampOn;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         if (index == feedbackHandler.Instance.index) {
-            smartwatch.GetComponent<Renderer>().material = black;
+            smartwatch.GetComponent<Renderer>().material = init;
         }
 
     }

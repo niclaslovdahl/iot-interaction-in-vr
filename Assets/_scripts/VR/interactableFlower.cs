@@ -5,30 +5,31 @@ using VRTK;
 
 public class interactableFlower : VRTK_InteractableObject {
 
-    public override void StartUsing(GameObject usingObject)
-    {
+    public Material feedback;
+    public Material init;
+    public GameObject smartwatch;
+
+    public override void StartUsing(GameObject usingObject) {
         base.StartUsing(usingObject);
-        toogleFlower();
+        feedbackHandler.Instance.index++;
+        StartCoroutine(flowerFeedback(feedbackHandler.Instance.index));
     }
 
-    public override void StopUsing(GameObject usingObject)
-    {
+    public override void StopUsing(GameObject usingObject) {
         base.StopUsing(usingObject);
-        toogleFlower();
+        feedbackHandler.Instance.index++;
+        StartCoroutine(flowerFeedback(feedbackHandler.Instance.index));
     }
 
-    protected override void Start()
-    {
+    protected override void Start() {
         base.Start();
     }
 
-    public void toogleFlower()
-    {
-        
-    }
-
-    private IEnumerator turnOff()
-    {
-            yield return new WaitForSeconds(3f);   
+    public IEnumerator flowerFeedback(int index) {
+        smartwatch.GetComponent<Renderer>().material = feedback;
+        yield return new WaitForSeconds(5f);
+        if (index == feedbackHandler.Instance.index) {
+            smartwatch.GetComponent<Renderer>().material = init;
+        }
     }
 }

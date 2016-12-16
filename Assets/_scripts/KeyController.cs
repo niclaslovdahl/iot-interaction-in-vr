@@ -6,19 +6,19 @@ using VRTK;
  * This class handles all key events in the scene.
  */
 
-public class KeyController : MonoBehaviour
-{
+public class KeyController : MonoBehaviour {
 
     public GameObject lamp1;
     public GameObject lamp2;
     public GameObject lamp3;
     public GameObject lamp4;
     public GameObject movie;
+    public GameObject flower1;
+    public GameObject flower2;
     public GameObject leftController;
     public GameObject rightController;
 
-    void OnGUI()
-    {
+    void OnGUI() {
         Event e = Event.current;
 
         /* Code used to detect what key was pressed 
@@ -27,42 +27,30 @@ public class KeyController : MonoBehaviour
 		}
 		*/
 
-        if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad1.ToString())))
-        {
+        if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad1.ToString()))) {
             lamp1.GetComponent<interactableLamp>().toogleLamp();
-        }
-        else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad2.ToString())))
-        {
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad2.ToString()))) {
             lamp2.GetComponent<interactableLamp>().toogleLamp();
-        }
-        else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad3.ToString())))
-        {
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad3.ToString()))) {
             lamp3.GetComponent<interactableLamp>().toogleLamp();
-        }
-        else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad4.ToString())))
-        {
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad4.ToString()))) {
             lamp4.GetComponent<interactableLamp>().toogleLamp();
-        }
-        else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad5.ToString())))
-        {
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad5.ToString()))) {
             movie.GetComponent<playMovie>().toggleTv();
-        }
-        else if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha1.ToString())))
-        {
-            if (leftController.GetComponent<VRTK_SimplePointer>().pointerHitColor.a == 0)
-            {
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad6.ToString()))) {
+            feedbackHandler.Instance.index++;
+            StartCoroutine(flower1.GetComponent<interactableFlower>().flowerFeedback(feedbackHandler.Instance.index));
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Keypad7.ToString()))) {
+            feedbackHandler.Instance.index++;
+            StartCoroutine(flower2.GetComponent<interactableFlower>().flowerFeedback(feedbackHandler.Instance.index));
+        } else if (e.Equals(Event.KeyboardEvent(KeyCode.Alpha1.ToString()))) {
+            if (leftController.GetComponent<VRTK_SimplePointer>().pointerHitColor.a == 0) {
                 leftController.GetComponent<VRTK_SimplePointer>().pointerHitColor = new Color(0f, 0.5f, 0f, 0.3f);
                 rightController.GetComponent<VRTK_SimplePointer>().pointerHitColor = new Color(0f, 0.5f, 0f, 0.3f);
-
-            }
-            else
-            {
+            } else {
                 leftController.GetComponent<VRTK_SimplePointer>().pointerHitColor = new Color(0f, 0.5f, 0f, 0f);
                 rightController.GetComponent<VRTK_SimplePointer>().pointerHitColor = new Color(0f, 0.5f, 0f, 0f);
             }
-
-
         }
-
     }
 }

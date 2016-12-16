@@ -15,7 +15,6 @@ public class lampButtonTraining : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (other.tag == "leftTrigger" || other.tag == "rightTrigger")
         {
             sphere.GetComponent<interactableSphere>().toogleSphere();
