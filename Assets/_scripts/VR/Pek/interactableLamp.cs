@@ -8,8 +8,7 @@ using VRTK;
  * TODO: Implement safe smart watch material change.
  */
 
-public class interactableLamp : VRTK_InteractableObject
-{
+public class interactableLamp : VRTK_InteractableObject {
     public Light l1;
     public Light l2;
     public Light l3;
@@ -23,72 +22,58 @@ public class interactableLamp : VRTK_InteractableObject
     private int count = 0;
     private bool lampState = true;
 
-    public override void StartUsing(GameObject usingObject)
-    {
+    public override void StartUsing(GameObject usingObject) {
         base.StartUsing(usingObject);
         toogleLamp();
     }
 
-    public override void StopUsing(GameObject usingObject)
-    {
+    public override void StopUsing(GameObject usingObject) {
         base.StopUsing(usingObject);
         toogleLamp();
     }
 
-    protected override void Start()
-    {
+    protected override void Start() {
         base.Start();
     }
 
-    public bool getLampState()
-    {
+    public bool getLampState() {
         return lampState;
     }
 
-    public void toogleLamp()
-    {
-        if (lampState)
-        {
+    public void toogleLamp() {
+        if (lampState) {
             l1.enabled = false;
             l2.enabled = false;
             l3.enabled = false;
-            StartCoroutine(turnOff());
+            feedbackHandler.Instance.index++;
+            StartCoroutine(turnOff(feedbackHandler.Instance.index));
             lampState = false;
             button.GetComponent<lampButton>().updateButton();
-        }
-        else
-        {
+        } else {
             l1.enabled = true;
             l2.enabled = true;
             l3.enabled = true;
-            StartCoroutine(turnOn());
+            feedbackHandler.Instance.index++;
+            StartCoroutine(turnOn(feedbackHandler.Instance.index));
             lampState = true;
             button.GetComponent<lampButton>().updateButton();
         }
     }
 
-    private IEnumerator turnOff()
-    {
-        count++;
+    private IEnumerator turnOff(int index) {
         smartwatch.GetComponent<Renderer>().material = lampOff;
         yield return new WaitForSeconds(2f);
-        if (count == 1)
-        {
+        if (index == feedbackHandler.Instance.index) {
             smartwatch.GetComponent<Renderer>().material = black;
         }
-        count--;
     }
 
-    private IEnumerator turnOn()
-    {
-        count++;
+    private IEnumerator turnOn(int index) {
         smartwatch.GetComponent<Renderer>().material = lampOn;
         yield return new WaitForSeconds(2f);
-        smartwatch.GetComponent<Renderer>().material = black;
-        if (count == 1)
-        {
+        if (index == feedbackHandler.Instance.index) {
             smartwatch.GetComponent<Renderer>().material = black;
         }
-        count--;
+
     }
 }
